@@ -7,7 +7,9 @@ import QandA from './QandA';
 const Questions = () => {
     return (
         <div>
-            <Home />
+            <Title />
+            <TimerPlayerName />
+            <QandA />
 
 
         </div>
