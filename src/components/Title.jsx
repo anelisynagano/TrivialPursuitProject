@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+
 
 const Title = () => {
     return (
-        <div>
-           
-           
-        </div>
+        <Fragment>
+            <h1 className="mb-3">Title Here</h1>
+        </Fragment>
     );
 };
 

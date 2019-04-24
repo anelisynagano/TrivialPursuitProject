@@ -10,8 +10,6 @@ const Home = () => {
             <Title />
             <Settings />
             <Button />
-
-
         </div>
     );
 };
