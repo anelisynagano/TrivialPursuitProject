@@ -4,8 +4,6 @@ const PlayerScore = () => {
     return (
         <div>
             
-
-            
         </div>
     );
 };
