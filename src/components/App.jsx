@@ -3,13 +3,13 @@ import Home from './Home';
 
 
 const App = () => {
-    return (
-        <div>
-            <Home />
+   return (
+       <div>
+           <Home />
 
 
-        </div>
-    );
+       </div>
+   );
 };
 
 export default App;
