@@ -1,6 +1,7 @@
 import React from 'react';
-
-
+import Title from './Title';
+import Settings from './Settings';
+import Button from './Button';
 
 const Home = () => {
     return (
@@ -8,8 +9,6 @@ const Home = () => {
             <Title />
             <Settings />
             <Button />
-
-
         </div>
     );
 };
