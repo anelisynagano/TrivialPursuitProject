@@ -1,11 +1,11 @@
 import React from 'react';
-import Home from './Home';
+import Questions from './Questions';
 
 
 const App = () => {
    return (
        <div>
-           <Home />
+           <Questions />
 
 
        </div>
