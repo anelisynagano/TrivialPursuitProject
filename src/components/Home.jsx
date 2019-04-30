@@ -3,7 +3,6 @@ import Title from './Title';
 import Settings from './Settings';
 import Button from './Button';
 
-
 const Home = () => {
     return (
         <div>
