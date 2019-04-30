@@ -8,7 +8,7 @@ const Home = () => {
         <div>
             <Title />
             <Settings />
-            <Button />
+            <Button startQuestions={() => this.loadQuestions()}/>
         </div>
     );
 };
