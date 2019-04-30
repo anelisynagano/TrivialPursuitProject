@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import Home from './Home';
+import Questions from './Questions';
 
 
 class App extends Component {
@@ -8,6 +10,10 @@ class App extends Component {
         this.state = {
             questions:[],
         };
+    }
+
+    componentDidMount() {
+        this.loadQuestions();
     }
 
     loadQuestions = () => {
@@ -21,13 +27,15 @@ class App extends Component {
     };
 
     render() {
-        console.log(this.state);
+        const { questions } = this.state;
+        console.log(questions);
         return (
             <div>
-                <Home />
-                <button onClick={this.loadQuestions} type="submit">Load</button>
-
-
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route path="/questions" render={props => <Questions {...props} questions={questions} />} />
+                </Switch>
+                            
             </div>
         );
     }

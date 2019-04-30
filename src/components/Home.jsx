@@ -2,13 +2,14 @@ import React from 'react';
 import Title from './Title';
 import Settings from './Settings';
 import Button from './Button';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     return (
         <div>
             <Title />
             <Settings />
-            <Button startQuestions={() => this.loadQuestions()}/>
+            <Link to="/questions"><Button /></Link>
         </div>
     );
 };

@@ -1,17 +1,25 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Title from './Title';
 import TimerPlayerName from './TimerPlayerName';
 import QandA from './QandA';
+import Button from './Button';
 
-const Questions = () => {
+const Questions = (props) => {
+    const { questions } = props;
+    console.log(questions);
     return (
         <div>
             <Title />
             <TimerPlayerName />
-            <QandA />
-            <QandA />
-            <QandA />
 
+            {questions.map((question) => {
+                return (
+                    <QandA key={question.question} question={question} />
+                );
+            })}
+            <Link to="/"><Button text="Home" /></Link>
+           
         </div>
     );
 };
