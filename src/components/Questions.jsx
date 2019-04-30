@@ -7,7 +7,6 @@ import Button from './Button';
 
 const Questions = (props) => {
     const { questions } = props;
-    console.log(questions);
     return (
         <div>
             <Title />

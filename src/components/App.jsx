@@ -17,7 +17,7 @@ class App extends Component {
     }
 
     loadQuestions = () => {
-        fetch("https://opentdb.com/api.php?amount=3")
+        fetch("https://opentdb.com/api.php?amount=3&type=multiple")
             .then(response => response.json())
             .then((data) => {
                 this.setState({
@@ -28,7 +28,6 @@ class App extends Component {
 
     render() {
         const { questions } = this.state;
-        console.log(questions);
         return (
             <div>
                 <Switch>
