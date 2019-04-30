@@ -3,8 +3,14 @@ import ReactDOM from 'react-dom';
 
 import '../assets/stylesheets/application.scss';
 import App from './components/App';
+import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
 
 const root = document.getElementById('root');
 if (root) {
-    ReactDOM.render(<App />, root);
+    ReactDOM.render(
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>,
+        root
+    );
 }
