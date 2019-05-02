@@ -81,7 +81,6 @@ class Settings extends Component {
 {/* put this to work, to show all categories and change when selected */}
 
                     </Dropdown.Toggle>
-
                     <Dropdown.Menu>
                         <Dropdown.Item id="action-1">General Knowledge</Dropdown.Item>
                         <Dropdown.Item id="action-2">Entertainment: Television</Dropdown.Item>
