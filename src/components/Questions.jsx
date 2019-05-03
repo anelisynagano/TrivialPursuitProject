@@ -18,7 +18,7 @@ const Questions = (props) => {
                 );
             })}
             <Link to="/"><Button text="Home" /></Link>
-           
+
         </div>
     );
 };
