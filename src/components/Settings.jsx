@@ -3,13 +3,12 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 
-
 class Settings extends Component {
     constructor (props) {
         super(props);
         this.state = {
             difficulty: '',
-            category: '',
+            categories: [],
             playerName: 'hello',
         };
     }
@@ -23,7 +22,7 @@ class Settings extends Component {
             .then(response => response.json())
             .then((data) => {
                 this.setState({
-                    category: data.results.trivia_categories,
+                    categories: data.trivia_categories,
                 });
             });
     };
@@ -31,7 +30,7 @@ class Settings extends Component {
     handleChange = (e) => {
         this.setState({ playerName: e.target.value });
     }
-    
+
     handleDifficultySelect = (key, event) => {
         event.preventDefault();
         this.setState({ difficulty: event.target.id });
@@ -39,7 +38,7 @@ class Settings extends Component {
 
     handleCategorySelect = (key, event) => {
         event.preventDefault();
-        this.setState({ category: event.target.id });
+        this.setState({ categories: event.target.id });
     }
 
     handleSubmit = (e) => {
@@ -52,45 +51,38 @@ class Settings extends Component {
     }
 
     render () {
-        console.log(this.state);
-        const { playerName, difficulty, category } = this.state;
+        const { playerName, difficulty, categories } = this.state;
+        const { Toggle, Menu, Item } = Dropdown;
         return (
             <div className="border p-4 rounded">
 
                 <Dropdown className="mb-3" onSelect={this.handleDifficultySelect}>
-                    <Dropdown.Toggle variant="warning" id="dropdown-basic">
+                    <Toggle variant="warning" id="dropdown-basic">
                         {
                             difficulty.charAt(0).toUpperCase() + difficulty.substr(1).toLowerCase()
                             || "Difficulty"
                         }
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        <Dropdown.Item id="easy">Easy</Dropdown.Item>
-                        <Dropdown.Item id="medium">Medium</Dropdown.Item>
-                        <Dropdown.Item id="hard">Hard</Dropdown.Item>
-                    </Dropdown.Menu>
+                    </Toggle>
+                    <Menu>
+                        <Item id="easy">Easy</Item>
+                        <Item id="medium">Medium</Item>
+                        <Item id="hard">Hard</Item>
+                    </Menu>
                 </Dropdown>
 
                 <Dropdown className="mb-3" onSelect={this.handleCategorySelect}>
-                    <Dropdown.Toggle variant="warning" id="dropdown-basic">
+                    <Toggle variant="warning" id="dropdown-basic">
+                        {"Category"}
+
+                    </Toggle>
+                    <Menu>
                         {
-                            category.charAt(0).toUpperCase() + category.substr(1).toLowerCase()
-                            || "Category"
+                            categories.map(category => <Item key={category.id}>{category.name}</Item>)
                         }
-
-{/* put this to work, to show all categories and change when selected */}
-
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        <Dropdown.Item id="action-1">General Knowledge</Dropdown.Item>
-                        <Dropdown.Item id="action-2">Entertainment: Television</Dropdown.Item>
-                        <Dropdown.Item id="action-3">Science and Nature</Dropdown.Item>
-                        <Dropdown.Item id="action-4">Sports</Dropdown.Item>
-                        <Dropdown.Item id="action-5">Geography</Dropdown.Item>
-                    </Dropdown.Menu>
+                    </Menu>
                 </Dropdown>
                 <InputGroup className="mb-3">
-             
+
                     <FormControl
                         placeholder="Player Name"
                         aria-label="Playername"
