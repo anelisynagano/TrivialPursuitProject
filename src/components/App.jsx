@@ -3,12 +3,12 @@ import { Route, Switch } from 'react-router-dom';
 import Home from './Home';
 import Questions from './Questions';
 
-
 class App extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            questions:[],
+            questions: [],
+            settings: { },
         };
     }
 
@@ -26,18 +26,22 @@ class App extends Component {
             });
     };
 
+    handleSettings = () => {
+        this.setState({ settings: this.props.settings });
+    }
+
     render() {
         const { questions } = this.state;
+
         return (
             <div>
                 <Switch>
-                    <Route exact path="/" component={Home} />
+                    <Route exact path="/" render={props => <Home {...props} onSettings={this.handleSettings} />} />
                     <Route path="/questions" render={props => <Questions {...props} questions={questions} />} />
                 </Switch>
-                            
             </div>
         );
     }
-};
+}
 
 export default App;

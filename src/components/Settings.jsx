@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
-
+import Button from './Button';
 
 class Settings extends Component {
     constructor (props) {
@@ -10,7 +10,7 @@ class Settings extends Component {
         this.state = {
             difficulty: '',
             category: '',
-            playerName: 'hello',
+            playerName: '',
         };
     }
 
@@ -23,7 +23,7 @@ class Settings extends Component {
             .then(response => response.json())
             .then((data) => {
                 this.setState({
-                    category: data.results.trivia_categories,
+                    category: data.trivia_categories,
                 });
             });
     };
@@ -31,7 +31,7 @@ class Settings extends Component {
     handleChange = (e) => {
         this.setState({ playerName: e.target.value });
     }
-    
+
     handleDifficultySelect = (key, event) => {
         event.preventDefault();
         this.setState({ difficulty: event.target.id });
@@ -44,15 +44,10 @@ class Settings extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { handleSubmitPlayerName } = this.props;
-        const { text } = this.state;
-
-        handleSubmitPlayerName(text);
-        this.setState({ text: '' });
+        this.props.onSettings(this.state.settings);
     }
 
     render () {
-        console.log(this.state);
         const { playerName, difficulty, category } = this.state;
         return (
             <div className="border p-4 rounded">
@@ -73,12 +68,10 @@ class Settings extends Component {
 
                 <Dropdown className="mb-3" onSelect={this.handleCategorySelect}>
                     <Dropdown.Toggle variant="warning" id="dropdown-basic">
-                        {
+                        {/* {
                             category.charAt(0).toUpperCase() + category.substr(1).toLowerCase()
                             || "Category"
-                        }
-
-{/* put this to work, to show all categories and change when selected */}
+                        } */}
 
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
@@ -90,7 +83,7 @@ class Settings extends Component {
                     </Dropdown.Menu>
                 </Dropdown>
                 <InputGroup className="mb-3">
-             
+
                     <FormControl
                         placeholder="Player Name"
                         aria-label="Playername"
@@ -99,6 +92,8 @@ class Settings extends Component {
                         onChange={this.handleChange}
                     />
                 </InputGroup>
+                <Button text="Start" onClick={this.handleSubmit} />
+                
             </div>
         );
     }
