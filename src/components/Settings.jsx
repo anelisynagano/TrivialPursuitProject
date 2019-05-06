@@ -10,7 +10,7 @@ class Settings extends Component {
         this.state = {
             difficulty: '',
             categories: [],
-            playerName: 'hello',
+            playerName: '',
         };
     }
 
@@ -44,7 +44,7 @@ class Settings extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.onSettings(this.state.settings);
+        this.props.onSettings(this.state);
     }
 
     render () {

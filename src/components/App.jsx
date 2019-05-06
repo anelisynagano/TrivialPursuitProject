@@ -16,7 +16,7 @@ class App extends Component {
         this.loadQuestions();
     }
 
-    loadQuestions = () => {
+    loadQuestions = (difficulty, category) => {
         fetch("https://opentdb.com/api.php?amount=3&type=multiple")
             .then(response => response.json())
             .then((data) => {
@@ -26,13 +26,13 @@ class App extends Component {
             });
     };
 
-    handleSettings = () => {
-        this.setState({ settings: this.props.settings });
+    handleSettings = (settings) => {
+        this.setState({ settings });
     }
 
     render() {
         const { questions } = this.state;
-
+        console.log(this.state.settings);
         return (
             <div>
                 <Switch>
