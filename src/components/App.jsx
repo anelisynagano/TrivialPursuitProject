@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Home from './Home';
 import Questions from './Questions';
 
+
 class App extends Component {
     constructor (props) {
         super(props);
@@ -12,12 +13,12 @@ class App extends Component {
         };
     }
 
-    componentDidMount() {
-        this.loadQuestions();
-    }
+    // componentDidMount() {
+    //     this.loadQuestions();
+    // }
 
     loadQuestions = (difficulty, category) => {
-        fetch("https://opentdb.com/api.php?amount=3&type=multiple")
+        fetch(`https://opentdb.com/api.php?amount=10&${category}&${difficulty}&type=multiple`)
             .then(response => response.json())
             .then((data) => {
                 this.setState({
@@ -28,11 +29,11 @@ class App extends Component {
 
     handleSettings = (settings) => {
         this.setState({ settings });
+        
     }
 
     render() {
         const { questions } = this.state;
-        console.log(this.state.settings);
         return (
             <div>
                 <Switch>
