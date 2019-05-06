@@ -6,8 +6,6 @@ const Score = (props) => {
 
     return (
 
-
-
         <div>
             <div className="score">{score.question}</div>
             <h1>Your Score</h1>
@@ -16,6 +14,3 @@ const Score = (props) => {
 };
 
 export default Score;
-
-
-function showResults(){}

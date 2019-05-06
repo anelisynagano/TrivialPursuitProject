@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
+import Button from './Button';
 
 class Settings extends Component {
     constructor (props) {
@@ -43,11 +44,7 @@ class Settings extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { handleSubmitPlayerName } = this.props;
-        const { text } = this.state;
-
-        handleSubmitPlayerName(text);
-        this.setState({ text: '' });
+        this.props.onSettings(this.state.settings);
     }
 
     render () {
@@ -91,6 +88,8 @@ class Settings extends Component {
                         onChange={this.handleChange}
                     />
                 </InputGroup>
+                <Button text="Start" onClick={this.handleSubmit} />
+                
             </div>
         );
     }

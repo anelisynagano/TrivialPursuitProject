@@ -1,7 +1,8 @@
 import React from 'react';
 import Timer from 'react-compound-timer';
 
-const TimerPlayerName = (handleClickPlayerName) => {
+
+const TimerPlayerName = () => {
     const handleTimesUp = () => {
         console.log('Go to next question');
     };
@@ -18,7 +19,9 @@ const TimerPlayerName = (handleClickPlayerName) => {
             >
                 <Timer.Seconds />
             </Timer>
-            {/* player={player} handleClickPlayerName={handleClickPlayerName} />       */}
+            <div>
+                
+            </div>
         </div>
     );
 };
