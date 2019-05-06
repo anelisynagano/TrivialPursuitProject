@@ -1,24 +1,18 @@
 import React, { Component } from 'react';
 import { shuffle } from 'lodash';
 import Answer from './Answer';
-import Button from './Button';
 
 class QandA extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedAnswer: '$95 Million',
+            selectedAnswer: "Black"
         };
     }
 
-    checkSelected = () => {
-        this.setState({
-            selectedAnswer: ""
-        });
-    };
-
     render() {
         const { question } = this.props;
+        const { selectedAnswer } = this.state;
         const shuffledAnswer = shuffle([question.correct_answer, ...question.incorrect_answers]);
         console.log(question);
         return (
@@ -26,11 +20,9 @@ class QandA extends Component {
                 <div className="bg-warning p-3 mb-3 rounded">{(question.question)}</div>
                 {shuffledAnswer.map((answer) => {
                     return (
-                        <div key={answer} role="presentation" className={`border border-dark p-3 mb-3 rounded${this.checkSelected}`}>{answer}</div>
+                        <Answer key={answer} answer={answer} isSelected={selectedAnswer === answer} />
                     );
                 })}
-                <Answer />
-                <Button />
 
             </div>
         )};
