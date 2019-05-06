@@ -9,8 +9,8 @@ class Settings extends Component {
         super(props);
         this.state = {
             difficulty: '',
-            category: '',
-            playerName: '',
+            categories: [],
+            playerName: 'hello',
         };
     }
 
@@ -23,7 +23,7 @@ class Settings extends Component {
             .then(response => response.json())
             .then((data) => {
                 this.setState({
-                    category: data.trivia_categories,
+                    categories: data.trivia_categories,
                 });
             });
     };
@@ -39,7 +39,7 @@ class Settings extends Component {
 
     handleCategorySelect = (key, event) => {
         event.preventDefault();
-        this.setState({ category: event.target.id });
+        this.setState({ categories: event.target.id });
     }
 
     handleSubmit = (e) => {
@@ -48,39 +48,35 @@ class Settings extends Component {
     }
 
     render () {
-        const { playerName, difficulty, category } = this.state;
+        const { playerName, difficulty, categories } = this.state;
+        const { Toggle, Menu, Item } = Dropdown;
         return (
             <div className="border p-4 rounded">
 
                 <Dropdown className="mb-3" onSelect={this.handleDifficultySelect}>
-                    <Dropdown.Toggle variant="warning" id="dropdown-basic">
+                    <Toggle variant="warning" id="dropdown-basic">
                         {
                             difficulty.charAt(0).toUpperCase() + difficulty.substr(1).toLowerCase()
                             || "Difficulty"
                         }
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        <Dropdown.Item id="easy">Easy</Dropdown.Item>
-                        <Dropdown.Item id="medium">Medium</Dropdown.Item>
-                        <Dropdown.Item id="hard">Hard</Dropdown.Item>
-                    </Dropdown.Menu>
+                    </Toggle>
+                    <Menu>
+                        <Item id="easy">Easy</Item>
+                        <Item id="medium">Medium</Item>
+                        <Item id="hard">Hard</Item>
+                    </Menu>
                 </Dropdown>
 
                 <Dropdown className="mb-3" onSelect={this.handleCategorySelect}>
-                    <Dropdown.Toggle variant="warning" id="dropdown-basic">
-                        {/* {
-                            category.charAt(0).toUpperCase() + category.substr(1).toLowerCase()
-                            || "Category"
-                        } */}
+                    <Toggle variant="warning" id="dropdown-basic">
+                        {"Category"}
 
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        <Dropdown.Item id="action-1">General Knowledge</Dropdown.Item>
-                        <Dropdown.Item id="action-2">Entertainment: Television</Dropdown.Item>
-                        <Dropdown.Item id="action-3">Science and Nature</Dropdown.Item>
-                        <Dropdown.Item id="action-4">Sports</Dropdown.Item>
-                        <Dropdown.Item id="action-5">Geography</Dropdown.Item>
-                    </Dropdown.Menu>
+                    </Toggle>
+                    <Menu>
+                        {
+                            categories.map(category => <Item key={category.id}>{category.name}</Item>)
+                        }
+                    </Menu>
                 </Dropdown>
                 <InputGroup className="mb-3">
 
