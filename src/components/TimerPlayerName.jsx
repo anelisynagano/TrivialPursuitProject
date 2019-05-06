@@ -20,7 +20,7 @@ const TimerPlayerName = () => {
                 <Timer.Seconds />
             </Timer>
             <div>
-                
+
             </div>
         </div>
     );

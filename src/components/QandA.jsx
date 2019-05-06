@@ -20,7 +20,6 @@ class QandA extends Component {
     render() {
         const { question } = this.props;
         const shuffledAnswer = shuffle([question.correct_answer, ...question.incorrect_answers]);
-        console.log(question);
         return (
             <div>
                 <div className="bg-warning p-3 mb-3 rounded">{(question.question)}</div>

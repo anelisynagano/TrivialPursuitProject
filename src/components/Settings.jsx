@@ -9,6 +9,7 @@ class Settings extends Component {
         super(props);
         this.state = {
             difficulty: '',
+            selectedCategory: '',
             categories: [],
             playerName: '',
         };
@@ -39,7 +40,7 @@ class Settings extends Component {
 
     handleCategorySelect = (key, event) => {
         event.preventDefault();
-        this.setState({ categories: event.target.id });
+        this.setState({ selectedCategory: event.target.id });
     }
 
     handleSubmit = (e) => {
@@ -48,7 +49,7 @@ class Settings extends Component {
     }
 
     render () {
-        const { playerName, difficulty, categories } = this.state;
+        const { playerName, difficulty, categories, selectedCategory } = this.state;
         const { Toggle, Menu, Item } = Dropdown;
         return (
             <div className="border p-4 rounded">
@@ -69,12 +70,11 @@ class Settings extends Component {
 
                 <Dropdown className="mb-3" onSelect={this.handleCategorySelect}>
                     <Toggle variant="warning" id="dropdown-basic">
-                        {"Category"}
-
+                        { selectedCategory || "Category" }
                     </Toggle>
                     <Menu>
                         {
-                            categories.map(category => <Item key={category.id}>{category.name}</Item>)
+                            categories.map(category => <Item key={category.id} id={category.name}>{category.name}</Item>)
                         }
                     </Menu>
                 </Dropdown>
@@ -89,7 +89,6 @@ class Settings extends Component {
                     />
                 </InputGroup>
                 <Button text="Start" onClick={this.handleSubmit} />
-                
             </div>
         );
     }
