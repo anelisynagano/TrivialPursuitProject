@@ -41,7 +41,7 @@ class QandA extends Component {
                 })}
 
             </div>
-        )};
+        )}
 };
 
 export default QandA;
