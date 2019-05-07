@@ -11,6 +11,7 @@ class App extends Component {
         this.state = {
             questions: [],
             settings: { },
+            score: 0
         };
     }
 
@@ -30,13 +31,17 @@ class App extends Component {
         this.props.history.push('/questions'); //redirect to /questions
     }
 
+    handleScore = (score) => {
+        this.setState({ score });
+    }
+
     render() {
         const { questions } = this.state;
         return (
             <div>
                 <Switch>
                     <Route exact path="/" render={props => <Home {...props} onSettings={this.handleSettings} />} />
-                    <Route path="/questions" render={props => <Questions {...props} questions={questions} />} />
+                    <Route path="/questions" render={props => <Questions {...props} questions={questions} onScore={this.handleScore} />} />
                 </Switch>
             </div>
         );
