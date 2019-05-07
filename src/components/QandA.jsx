@@ -22,7 +22,7 @@ class QandA extends Component {
             selectedAnswer: answer
         });
     }
-
+    
     render() {
         const { question } = this.props;
         const { selectedAnswer, shuffledAnswers } = this.state;
