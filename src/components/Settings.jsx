@@ -9,7 +9,7 @@ class Settings extends Component {
         super(props);
         this.state = {
             difficulty: '',
-            selectedCategory: '',
+            selectedCategoryId: '',
             categories: [],
             playerName: '',
         };
@@ -40,7 +40,7 @@ class Settings extends Component {
 
     handleCategorySelect = (key, event) => {
         event.preventDefault();
-        this.setState({ selectedCategory: event.target.id });
+        this.setState({ selectedCategoryId: event.target.id });
     }
 
     handleSubmit = (e) => {
@@ -49,8 +49,9 @@ class Settings extends Component {
     }
 
     render () {
-        const { playerName, difficulty, categories, selectedCategory } = this.state;
+        const { playerName, difficulty, categories, selectedCategoryId } = this.state;
         const { Toggle, Menu, Item } = Dropdown;
+        const selectedCategory = categories.find(cat => cat.id === +selectedCategoryId);
         return (
             <div className="border p-4 rounded">
 
@@ -70,11 +71,12 @@ class Settings extends Component {
 
                 <Dropdown className="mb-3" onSelect={this.handleCategorySelect}>
                     <Toggle variant="warning" id="dropdown-basic">
-                        { selectedCategory || "Category" }
+                        {/* find the category that corresponds to the selected id, get the name with .name */}
+                        { (selectedCategory !== undefined && selectedCategory.name) || "Category" }
                     </Toggle>
                     <Menu>
                         {
-                            categories.map(category => <Item key={category.id} id={category.name}>{category.name}</Item>)
+                            categories.map(category => <Item key={category.id} id={category.id}>{category.name}</Item>)
                         }
                     </Menu>
                 </Dropdown>
