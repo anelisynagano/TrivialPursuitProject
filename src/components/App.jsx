@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import Home from './Home';
 import Questions from './Questions';
@@ -13,10 +14,6 @@ class App extends Component {
         };
     }
 
-    // componentDidMount() {
-    //     this.loadQuestions();
-    // }
-
     loadQuestions = (difficulty, category) => {
         fetch(`https://opentdb.com/api.php?amount=10&${category}&${difficulty}&type=multiple`)
             .then(response => response.json())
@@ -28,8 +25,9 @@ class App extends Component {
     };
 
     handleSettings = (settings) => {
-        this.setState({ settings });
-        
+        this.setState({ settings }); //submit difficulty,category and player name //
+        this.loadQuestions(); //loadquestions here
+        this.props.history.push('/questions'); //redirect to /questions
     }
 
     render() {
@@ -45,4 +43,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default withRouter(App);
