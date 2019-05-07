@@ -11,7 +11,6 @@ const Questions = (props) => {
         <div>
             <Title />
             <TimerPlayerName />
-
             {questions.map((question) => {
                 return (
                     <QandA key={question.question} question={question} />
