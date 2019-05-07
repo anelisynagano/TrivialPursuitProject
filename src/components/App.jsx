@@ -13,9 +13,9 @@ class App extends Component {
         };
     }
 
-    // componentDidMount() {
-    //     this.loadQuestions();
-    // }
+    componentDidMount() {
+        this.loadQuestions();
+    }
 
     loadQuestions = (difficulty, category) => {
         fetch(`https://opentdb.com/api.php?amount=10&${category}&${difficulty}&type=multiple`)
