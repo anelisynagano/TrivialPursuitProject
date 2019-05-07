@@ -6,7 +6,6 @@ const Answer = ({ answer, isSelected, onSelect }) => {
     };
 
     const handleSelectAnswer = () => {
-        console.log('Selected');
         onSelect(answer);
     };
 

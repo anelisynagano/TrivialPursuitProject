@@ -6,14 +6,14 @@ import QandA from './QandA';
 import Button from './Button';
 
 const Questions = (props) => {
-    const { questions } = props;
+    const { questions, onScore } = props;
     return (
         <div>
             <Title />
             <TimerPlayerName />
             {questions.map((question) => {
                 return (
-                    <QandA key={question.question} question={question} />
+                    <QandA onScore={onScore} key={question.question} question={question} />
                 );
             })}
             <Link to="/"><Button text="Home" /></Link>

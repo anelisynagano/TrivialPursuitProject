@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { shuffle } from 'lodash';
 import Answer from './Answer';
+import Button from './Button';
 
 class QandA extends Component {
     constructor(props) {
@@ -22,7 +23,15 @@ class QandA extends Component {
             selectedAnswer: answer
         });
     }
-    
+
+    handleSubmitScore = () => {
+        const { question, onScore } = this.props;
+        const { selectedAnswer } = this.state;
+        const score = (selectedAnswer === question.correct_answer) ? 5 : 0;
+        console.log(score);
+        onScore(score);
+    }
+
     render() {
         const { question } = this.props;
         const { selectedAnswer, shuffledAnswers } = this.state;
@@ -39,7 +48,7 @@ class QandA extends Component {
                         />
                     );
                 })}
-
+                <Button text="Next" onClick={this.handleSubmitScore} />
             </div>
         )}
 };
