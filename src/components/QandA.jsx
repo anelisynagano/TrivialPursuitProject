@@ -8,7 +8,8 @@ class QandA extends Component {
         super(props);
         this.state = {
             selectedAnswer: "",
-            shuffledAnswers: []
+            shuffledAnswers: [],
+            isSubmitted: false
         };
     }
 
@@ -28,13 +29,16 @@ class QandA extends Component {
         const { question, onScore } = this.props;
         const { selectedAnswer } = this.state;
         const score = (selectedAnswer === question.correct_answer) ? 5 : 0;
-        console.log(score);
         onScore(score);
+
+        this.setState({
+            isSubmitted: true
+        });
     }
 
     render() {
         const { question } = this.props;
-        const { selectedAnswer, shuffledAnswers } = this.state;
+        const { selectedAnswer, shuffledAnswers, isSubmitted } = this.state;
         return (
             <div>
                 <div className="bg-warning p-3 mb-3 rounded">{(question.question)}</div>
@@ -42,7 +46,9 @@ class QandA extends Component {
                     return (
                         <Answer
                             key={answer}
+                            isCorrectAnswer={question.correct_answer === answer}
                             answer={answer}
+                            isSubmitted={isSubmitted}
                             isSelected={selectedAnswer === answer}
                             onSelect={this.handleSelectAnswer}
                         />
