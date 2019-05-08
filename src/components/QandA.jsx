@@ -9,7 +9,8 @@ class QandA extends Component {
         this.state = {
             selectedAnswer: "",
             shuffledAnswers: [],
-            isSubmitted: false
+            isSubmitted: false,
+            isAnswerSubmitted: false
         };
     }
 
@@ -32,13 +33,17 @@ class QandA extends Component {
         onScore(score);
 
         this.setState({
-            isSubmitted: true
+            isSubmitted: true,
+            isAnswerSubmitted: true
         });
     }
 
     render() {
         const { question } = this.props;
-        const { selectedAnswer, shuffledAnswers, isSubmitted } = this.state;
+        const {
+            selectedAnswer, shuffledAnswers, isSubmitted, isAnswerSubmitted
+        } = this.state;
+
         return (
             <div>
                 <div className="bg-warning p-3 mb-3 rounded">{(question.question)}</div>
@@ -51,12 +56,14 @@ class QandA extends Component {
                             isSubmitted={isSubmitted}
                             isSelected={selectedAnswer === answer}
                             onSelect={this.handleSelectAnswer}
+                            disabled={isAnswerSubmitted}
                         />
                     );
                 })}
                 <Button
                     text="Next"
                     onClick={this.handleSubmitScore}
+                    disabled={isAnswerSubmitted}
                 />
             </div>
         )}

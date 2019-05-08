@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Answer = ({ answer, isSelected, onSelect, isCorrectAnswer, isSubmitted }) => {
+const Answer = ({ answer, isSelected, onSelect, isCorrectAnswer, isSubmitted, disabled }) => {
     const selectedClass = () => {
         return (isSelected ? "border-info border-1" : "border-dark");
     };
@@ -13,7 +13,7 @@ const Answer = ({ answer, isSelected, onSelect, isCorrectAnswer, isSubmitted }) 
     };
 
     const handleSelectAnswer = () => {
-        onSelect(answer);
+        return disabled ? "" : onSelect(answer);
     };
 
     return (
