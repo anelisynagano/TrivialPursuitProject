@@ -2,7 +2,7 @@ import React from 'react';
 
 const Answer = ({ answer, isSelected, onSelect, isCorrectAnswer, isSubmitted }) => {
     const selectedClass = () => {
-        return (isSelected ? "border-info" : "border-dark");
+        return (isSelected ? "border-info border-1" : "border-dark");
     };
 
     const correctClass = () => {
