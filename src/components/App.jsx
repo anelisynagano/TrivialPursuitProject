@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom';
 import Home from './Home';
 import Questions from './Questions';
 
-
 class App extends Component {
     constructor (props) {
         super(props);
@@ -27,7 +26,7 @@ class App extends Component {
 
     handleSettings = (settings) => {
         this.setState({ settings }); //submit difficulty,category and player name //
-        this.loadQuestions(settings.difficulty, settings.selectedCategoryId); //loadquestions here
+        this.loadQuestions(settings.difficulty, settings.selectedCategory.id); //loadquestions here
         this.props.history.push('/questions'); //redirect to /questions
     }
 
@@ -37,12 +36,12 @@ class App extends Component {
 
 
     render() {
-        const { questions } = this.state;
+        const { questions, settings } = this.state;
         return (
             <div>
                 <Switch>
                     <Route exact path="/" render={props => <Home {...props} onSettings={this.handleSettings} />} />
-                    <Route path="/questions" render={props => <Questions {...props} questions={questions} onScore={this.handleScore} />} />
+                    <Route path="/questions" render={props => <Questions {...props} questions={questions} onScore={this.handleScore} settings={settings} />} />
                 </Switch>
             </div>
         );

@@ -6,11 +6,11 @@ import QandA from './QandA';
 import Button from './Button';
 
 const Questions = (props) => {
-    const { questions, onScore } = props;
+    const { questions, onScore, settings } = props;
     return (
         <div>
             <Title />
-            <TimerPlayerName />
+            <TimerPlayerName settings={settings} />
             {questions.map((question) => {
                 return (
                     <QandA onScore={onScore} key={question.question} question={question} />
