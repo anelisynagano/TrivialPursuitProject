@@ -54,7 +54,10 @@ class QandA extends Component {
                         />
                     );
                 })}
-                <Button text="Next" onClick={this.handleSubmitScore} />
+                <Button
+                    text="Next"
+                    onClick={this.handleSubmitScore}
+                />
             </div>
         )}
 };

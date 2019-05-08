@@ -32,8 +32,9 @@ class App extends Component {
     }
 
     handleScore = (score) => {
-        this.setState({ score });
+        this.setState({ score: this.state.score + score });
     }
+
 
     render() {
         const { questions } = this.state;
