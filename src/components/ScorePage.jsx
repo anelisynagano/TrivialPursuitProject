@@ -1,15 +1,17 @@
 import React from 'react';
-import Button from './Button'
-
+import { Link } from 'react-router-dom';
+import Button from './Button';
 
 const ScorePage = () => {
     return (
         <div>
-            <Button />
-            <Button />
-            <Button />
-            <Button />
-            
+            <a href={`https://www.facebook.com/sharer/sharer.php?u=https://anelisynagano.github.io/TrivialPursuitProject/`} >
+                <Button>
+                    Share on Facebook
+                </Button>
+            </a>
+            <Link to="/"><Button text="Play Again" /></Link>
+
         </div>
     );
 };

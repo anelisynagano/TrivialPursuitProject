@@ -2,9 +2,7 @@ import React from 'react';
 import Timer from 'react-compound-timer';
 
 const TimerPlayerName = ({ settings }) => {
-    console.log(settings);
     const handleTimesUp = () => {
-
     };
 
     return (
@@ -24,10 +22,10 @@ const TimerPlayerName = ({ settings }) => {
                     Difficulty:
                     {settings.difficulty.charAt(0).toUpperCase()
                     + settings.difficulty.substr(1).toLowerCase()}
-                    |
+                     |
                     Category:
                     {settings.selectedCategory.name}
-                    |
+                     |
                     Player Name:
                     {settings.playerName}
                 </p>
