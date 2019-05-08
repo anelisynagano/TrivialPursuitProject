@@ -3,6 +3,7 @@ import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import Home from './Home';
 import Questions from './Questions';
+import ScorePage from './ScorePage';
 
 class App extends Component {
     constructor (props) {
@@ -42,6 +43,7 @@ class App extends Component {
                 <Switch>
                     <Route exact path="/" render={props => <Home {...props} onSettings={this.handleSettings} />} />
                     <Route path="/questions" render={props => <Questions {...props} questions={questions} onScore={this.handleScore} settings={settings} />} />
+                    <Route path="/scorepage" render={props => <ScorePage {...props} />} />
                 </Switch>
             </div>
         );
