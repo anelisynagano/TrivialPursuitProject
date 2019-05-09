@@ -5,7 +5,7 @@ import Score from './Score';
 
 const ScorePage = ({ onScore }) => {
     return (
-        <div>
+        <div className="w-100">
             <Score onScore={onScore} />
             <a href={`https://www.facebook.com/sharer/sharer.php?u=https://anelisynagano.github.io/TrivialPursuitProject/`} >
                 <Button>
