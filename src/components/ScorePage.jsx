@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from './Button';
+import Score from './Score';
 
-const ScorePage = () => {
+const ScorePage = ({ onScore }) => {
     return (
         <div>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=https://anelisynagano.github.io/TrivialPursuitProject/scorepage">
+            <Score onScore={onScore} />
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://anelisynagano.github.io/TrivialPursuitProject/" >
                 <Button text="Share on Facebook" />
             </a>
-            <Button text="Invite a friend to play" />
             <Link to="/"><Button text="Play Again" /></Link>
 
         </div>
