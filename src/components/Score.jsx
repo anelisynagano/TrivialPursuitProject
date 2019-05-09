@@ -1,14 +1,13 @@
 import React from 'react';
 
 
-const Score = (props) => {
-    const { score } = props;
-
+const Score = ({ onScore }) => {
+    console.log(onScore);
     return (
 
         <div>
-            <div className="score">{score.question}</div>
             <h1>Your Score</h1>
+            <div className="score"><h2> {onScore} </h2></div>
         </div>
     );
 };

@@ -33,15 +33,16 @@ class App extends Component {
     }
 
     handleScore = (score) => {
-        this.setState({ 
+        const { questionsAnswered } = this.state;
+        this.setState({
             score: this.state.score + score,
-            questionsAnswered: this.state.questionsAnswered + 1
+            questionsAnswered: questionsAnswered + 1
         });
     }
 
 
     render() {
-        const { questions, settings, questionsAnswered } = this.state;
+        const { questions, settings, questionsAnswered, score } = this.state;
         return (
             <div>
                 <Switch>
@@ -58,7 +59,7 @@ class App extends Component {
                             />
                         )}
                     />
-                    <Route path="/scorepage" render={props => <ScorePage {...props} />} />
+                    <Route path="/scorepage" render={props => <ScorePage {...props} onScore={score} />} />
                 </Switch>
             </div>
         );
