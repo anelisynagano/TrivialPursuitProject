@@ -44,24 +44,22 @@ class App extends Component {
     render() {
         const { questions, settings, questionsAnswered, score } = this.state;
         return (
-            <div>
-                <Switch>
-                    <Route exact path="/" render={props => <Home {...props} onSettings={this.handleSettings} />} />
-                    <Route
-                        path="/questions"
-                        render={props => (
-                            <Questions
-                                {...props}
-                                questions={questions}
-                                onScore={this.handleScore}
-                                settings={settings}
-                                isComplete={questionsAnswered === questions.length}
-                            />
-                        )}
-                    />
-                    <Route path="/scorepage" render={props => <ScorePage {...props} onScore={score} />} />
-                </Switch>
-            </div>
+            <Switch>
+                <Route exact path="/" render={props => <Home {...props} onSettings={this.handleSettings} />} />
+                <Route
+                    path="/questions"
+                    render={props => (
+                        <Questions
+                            {...props}
+                            questions={questions}
+                            onScore={this.handleScore}
+                            settings={settings}
+                            isComplete={questionsAnswered === questions.length}
+                        />
+                    )}
+                />
+                <Route path="/scorepage" render={props => <ScorePage {...props} onScore={score} />} />
+            </Switch>
         );
     }
 }
