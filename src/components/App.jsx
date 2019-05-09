@@ -10,14 +10,14 @@ class App extends Component {
         super(props);
         this.state = {
             questions: [],
-            settings: { },
+            settings: {},
             score: 0,
             questionsAnswered: 0
         };
     }
 
     loadQuestions = (difficulty, category) => {
-        fetch(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`)
+        fetch(`https://opentdb.com/api.php?amount=1&category=${category}&difficulty=${difficulty}&type=multiple`)
             .then(response => response.json())
             .then((data) => {
                 this.setState({
@@ -27,39 +27,48 @@ class App extends Component {
     };
 
     handleSettings = (settings) => {
-        this.setState({ settings }); //submit difficulty,category and player name //
-        this.loadQuestions(settings.difficulty, settings.selectedCategory.id); //loadquestions here
-        this.props.history.push('/questions'); //redirect to /questions
+        const { history } = this.props;
+        this.setState({ settings }); // submit difficulty,category and player name //
+        this.loadQuestions(settings.difficulty, settings.selectedCategory.id); // loadquestions here
+        history.push('/questions'); // redirect to /questions
     }
 
-    handleScore = (score) => {
-        const { questionsAnswered } = this.state;
+    handleScore = (sumScore) => {
+        const { questionsAnswered, score } = this.state;
         this.setState({
-            score: this.state.score + score,
+            score: score + sumScore,
             questionsAnswered: questionsAnswered + 1
         });
     }
 
 
     render() {
-        const { questions, settings, questionsAnswered, score } = this.state;
+        const {
+            questions,
+            settings,
+            questionsAnswered,
+            score
+        } = this.state;
         return (
-            <Switch>
-                <Route exact path="/" render={props => <Home {...props} onSettings={this.handleSettings} />} />
-                <Route
-                    path="/questions"
-                    render={props => (
-                        <Questions
-                            {...props}
-                            questions={questions}
-                            onScore={this.handleScore}
-                            settings={settings}
-                            isComplete={questionsAnswered === questions.length}
-                        />
-                    )}
-                />
-                <Route path="/scorepage" render={props => <ScorePage {...props} onScore={score} />} />
-            </Switch>
+            <div>
+                <Switch>
+                    <Route exact path="/" render={props => <Home {...props} onSettings={this.handleSettings} />} />
+                    <Route path="/share/:difficulty/:categoryId" render={props => <Home {...props} onSettings={this.handleSettings} />} />
+                    <Route
+                        path="/questions"
+                        render={props => (
+                            <Questions
+                                {...props}
+                                questions={questions}
+                                onScore={this.handleScore}
+                                settings={settings}
+                                isComplete={questionsAnswered === questions.length}
+                            />
+                        )}
+                    />
+                    <Route path="/scorepage" render={props => <ScorePage {...props} onScore={score} onSettings={this.handleSettings} settings={settings} />} />
+                </Switch>
+            </div>
         );
     }
 }

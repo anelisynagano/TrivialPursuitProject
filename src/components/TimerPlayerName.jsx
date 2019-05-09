@@ -18,18 +18,20 @@ const TimerPlayerName = ({ settings }) => {
                 <Timer.Seconds />
             </Timer>
             <div>
-                <p>
-                    Difficulty:
-                    {settings.difficulty.charAt(0).toUpperCase()
-                    + settings.difficulty.substr(1).toLowerCase()}
-                     |
-                    Category:
-                    {settings.selectedCategory.name}
-                     |
-                    Player Name:
-                    {settings.playerName}
-                </p>
-
+                {
+                    settings.difficulty && (
+                        <p>
+                            Difficulty:
+                            {settings.difficulty.charAt(0).toUpperCase()
+                            + settings.difficulty.substr(1).toLowerCase()}
+                            |
+                            Category:
+                            {settings.selectedCategory.name}
+                            |
+                            Player Name:
+                            {settings.playerName}
+                        </p>
+                    )}
             </div>
         </div>
     );

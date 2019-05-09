@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import Dropdown from 'react-bootstrap/Dropdown';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
@@ -16,18 +17,31 @@ class Settings extends Component {
     }
 
     componentDidMount() {
-        this.loadCategory();
+        this.loadCategories();
     }
 
-    loadCategory = () => {
+    loadCategories = () => {
         fetch("https://opentdb.com/api_category.php")
             .then(response => response.json())
             .then((data) => {
                 this.setState({
                     categories: data.trivia_categories,
                 });
+                this.loadPresets(data.trivia_categories);
             });
     };
+
+    loadPresets = (categories) => {
+        const { match } = this.props;
+        const { params, url } = match;
+
+        if (url !== "/") {
+            this.setState({
+                difficulty: params.difficulty,
+                selectedCategory: categories.find(cat => cat.id === +params.categoryId)
+            });
+        }
+    }
 
     handleChange = (e) => {
         this.setState({ playerName: e.target.value });
@@ -42,19 +56,25 @@ class Settings extends Component {
         event.preventDefault();
         const { categories } = this.state;
         const selectedCategory = categories.find(cat => cat.id === +event.target.id);
-            
+
         this.setState({ selectedCategory });
     }
 
     handleSubmit = (e) => {
+        const { onSettings } = this.props;
         e.preventDefault();
-        this.props.onSettings(this.state);
+        onSettings(this.state);
     }
 
     render () {
-        const { playerName, difficulty, categories, selectedCategory } = this.state;
+        const {
+            playerName,
+            difficulty,
+            categories,
+            selectedCategory
+        } = this.state;
         const { Toggle, Menu, Item } = Dropdown;
-        // const selectedCategory = categories.find(cat => cat.id === +selectedCategoryId);
+
         return (
             <div className="border rounded">
 
@@ -74,12 +94,20 @@ class Settings extends Component {
 
                 <Dropdown className="mb-3" onSelect={this.handleCategorySelect}>
                     <Toggle variant="warning" id="dropdown-basic">
-                        {/* find the category that corresponds to the selected id, get the name with .name */}
+                        {/* find the category that corresponds to the selected id,
+                         get the name with .name */}
                         { (selectedCategory.name !== '' && selectedCategory.name) || "Category" }
                     </Toggle>
                     <Menu>
                         {
-                            categories.map(category => <Item key={category.id} id={category.id}>{category.name}</Item>)
+                            categories.map(category => (
+                                <Item
+                                    key={category.id}
+                                    id={category.id}
+                                >
+                                    {category.name}
+                                </Item>
+                            ))
                         }
                     </Menu>
                 </Dropdown>
@@ -99,4 +127,4 @@ class Settings extends Component {
     }
 }
 
-export default Settings;
+export default withRouter(Settings);
