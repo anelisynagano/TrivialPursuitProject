@@ -45,7 +45,7 @@ class QandA extends Component {
         } = this.state;
 
         return (
-            <div>
+            <div className="py-4">
                 <div className="bg-warning p-3 mb-3 rounded">{(question.question)}</div>
                 {shuffledAnswers.map((answer) => {
                     return (

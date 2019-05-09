@@ -76,7 +76,7 @@ class Settings extends Component {
         const { Toggle, Menu, Item } = Dropdown;
 
         return (
-            <div className="border p-4 rounded">
+            <div className="border rounded">
 
                 <Dropdown className="mb-3" onSelect={this.handleDifficultySelect}>
                     <Toggle variant="warning" id="dropdown-basic">

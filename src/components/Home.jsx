@@ -4,7 +4,7 @@ import Settings from './Settings';
 
 const Home = ({ onSettings }) => {
     return (
-        <div>
+        <div className="w-100">
             <Title />
             <Settings onSettings={onSettings} />
         </div>
