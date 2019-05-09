@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import Dropdown from 'react-bootstrap/Dropdown';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
@@ -16,18 +17,31 @@ class Settings extends Component {
     }
 
     componentDidMount() {
-        this.loadCategory();
+        this.loadCategories();
     }
 
-    loadCategory = () => {
+    loadCategories = () => {
         fetch("https://opentdb.com/api_category.php")
             .then(response => response.json())
             .then((data) => {
                 this.setState({
                     categories: data.trivia_categories,
                 });
+                this.loadPresets(data.trivia_categories);
             });
     };
+
+    loadPresets = (categories) => {
+        const { match } = this.props;
+        const { params, url } = match;
+
+        if (url !== "/") {
+            this.setState({
+                difficulty: params.difficulty,
+                selectedCategory: categories.find(cat => cat.id === +params.categoryId)
+            });
+        }
+    }
 
     handleChange = (e) => {
         this.setState({ playerName: e.target.value });
@@ -60,7 +74,7 @@ class Settings extends Component {
             selectedCategory
         } = this.state;
         const { Toggle, Menu, Item } = Dropdown;
-        // const selectedCategory = categories.find(cat => cat.id === +selectedCategoryId);
+
         return (
             <div className="border p-4 rounded">
 
@@ -113,4 +127,4 @@ class Settings extends Component {
     }
 }
 
-export default Settings;
+export default withRouter(Settings);

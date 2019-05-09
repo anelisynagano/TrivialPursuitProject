@@ -10,7 +10,7 @@ class App extends Component {
         super(props);
         this.state = {
             questions: [],
-            settings: { },
+            settings: {},
             score: 0,
             questionsAnswered: 0
         };
@@ -53,6 +53,7 @@ class App extends Component {
             <div>
                 <Switch>
                     <Route exact path="/" render={props => <Home {...props} onSettings={this.handleSettings} />} />
+                    <Route path="/share/:difficulty/:categoryId" render={props => <Home {...props} onSettings={this.handleSettings} />} />
                     <Route
                         path="/questions"
                         render={props => (
