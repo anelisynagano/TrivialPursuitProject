@@ -7,7 +7,11 @@ const Score = ({ onScore }) => {
 
         <div>
             <h1>Your Score</h1>
-            <div className="score"><h2> {onScore} </h2></div>
+            <div className="score">
+                <h2>
+                    {onScore}
+                </h2>
+            </div>
         </div>
     );
 };

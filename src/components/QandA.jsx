@@ -66,7 +66,8 @@ class QandA extends Component {
                     disabled={isAnswerSubmitted}
                 />
             </div>
-        )}
-};
+        );
+    }
+}
 
 export default QandA;

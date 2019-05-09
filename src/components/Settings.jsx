@@ -42,17 +42,23 @@ class Settings extends Component {
         event.preventDefault();
         const { categories } = this.state;
         const selectedCategory = categories.find(cat => cat.id === +event.target.id);
-            
+
         this.setState({ selectedCategory });
     }
 
     handleSubmit = (e) => {
+        const { onSettings } = this.props;
         e.preventDefault();
-        this.props.onSettings(this.state);
+        onSettings(this.state);
     }
 
     render () {
-        const { playerName, difficulty, categories, selectedCategory } = this.state;
+        const {
+            playerName,
+            difficulty,
+            categories,
+            selectedCategory
+        } = this.state;
         const { Toggle, Menu, Item } = Dropdown;
         // const selectedCategory = categories.find(cat => cat.id === +selectedCategoryId);
         return (
@@ -74,12 +80,20 @@ class Settings extends Component {
 
                 <Dropdown className="mb-3" onSelect={this.handleCategorySelect}>
                     <Toggle variant="warning" id="dropdown-basic">
-                        {/* find the category that corresponds to the selected id, get the name with .name */}
+                        {/* find the category that corresponds to the selected id,
+                         get the name with .name */}
                         { (selectedCategory.name !== '' && selectedCategory.name) || "Category" }
                     </Toggle>
                     <Menu>
                         {
-                            categories.map(category => <Item key={category.id} id={category.id}>{category.name}</Item>)
+                            categories.map(category => (
+                                <Item
+                                    key={category.id}
+                                    id={category.id}
+                                >
+                                    {category.name}
+                                </Item>
+                            ))
                         }
                     </Menu>
                 </Dropdown>

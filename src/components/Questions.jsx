@@ -5,8 +5,12 @@ import TimerPlayerName from './TimerPlayerName';
 import QandA from './QandA';
 import Button from './Button';
 
-const Questions = ({ questions, onScore, settings, isComplete }) => {
-
+const Questions = ({
+    questions,
+    onScore,
+    settings,
+    isComplete
+}) => {
     return (
         <div>
             <Title />
@@ -22,10 +26,8 @@ const Questions = ({ questions, onScore, settings, isComplete }) => {
                     <Button text="Your Score" />
                 </Link>
             )}
-
         </div>
     );
-
 };
 
 export default Questions;

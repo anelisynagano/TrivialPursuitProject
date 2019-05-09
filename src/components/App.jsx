@@ -27,22 +27,28 @@ class App extends Component {
     };
 
     handleSettings = (settings) => {
-        this.setState({ settings }); //submit difficulty,category and player name //
-        this.loadQuestions(settings.difficulty, settings.selectedCategory.id); //loadquestions here
-        this.props.history.push('/questions'); //redirect to /questions
+        const { history } = this.props;
+        this.setState({ settings }); // submit difficulty,category and player name //
+        this.loadQuestions(settings.difficulty, settings.selectedCategory.id); // loadquestions here
+        history.push('/questions'); // redirect to /questions
     }
 
-    handleScore = (score) => {
-        const { questionsAnswered } = this.state;
+    handleScore = (sumScore) => {
+        const { questionsAnswered, score } = this.state;
         this.setState({
-            score: this.state.score + score,
+            score: score + sumScore,
             questionsAnswered: questionsAnswered + 1
         });
     }
 
 
     render() {
-        const { questions, settings, questionsAnswered, score } = this.state;
+        const {
+            questions,
+            settings,
+            questionsAnswered,
+            score
+        } = this.state;
         return (
             <div>
                 <Switch>
