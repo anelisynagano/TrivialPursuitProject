@@ -17,7 +17,7 @@ class App extends Component {
     }
 
     loadQuestions = (difficulty, category) => {
-        fetch(`https://opentdb.com/api.php?amount=1&category=${category}&difficulty=${difficulty}&type=multiple`)
+        fetch(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`)
             .then(response => response.json())
             .then((data) => {
                 this.setState({
