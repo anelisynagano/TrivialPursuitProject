@@ -31,17 +31,16 @@ class Settings extends Component {
             });
     };
 
-    loadPresets = (categories) => {
-        const { match } = this.props;
-        const { params, url } = match;
-
-        if (url !== "/") {
-            this.setState({
-                difficulty: params.difficulty,
-                selectedCategory: categories.find(cat => cat.id === +params.categoryId)
-            });
+        loadPresets = (categories) => {
+            const { match } = this.props;
+            const { params, url } = match;
+            if (url !== "/") {
+                this.setState({
+                    difficulty: params.difficulty,
+                    selectedCategory: categories.find(cat => cat.id === +params.categoryId)
+                });
+            }
         }
-    }
 
     handleChange = (e) => {
         this.setState({ playerName: e.target.value });
@@ -76,7 +75,7 @@ class Settings extends Component {
         const { Toggle, Menu, Item } = Dropdown;
 
         return (
-            <div className="border rounded">
+            <div className="mb-3">
 
                 <Dropdown className="mb-3" onSelect={this.handleDifficultySelect}>
                     <Toggle variant="warning" id="dropdown-basic">

@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Home from './Home';
 import Questions from './Questions';
 import ScorePage from './ScorePage';
+import AboutUs from './AboutUs';
 
 class App extends Component {
     constructor (props) {
@@ -17,7 +18,7 @@ class App extends Component {
     }
 
     loadQuestions = (difficulty, category) => {
-        fetch(`https://opentdb.com/api.php?amount=1&category=${category}&difficulty=${difficulty}&type=multiple`)
+        fetch(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`)
             .then(response => response.json())
             .then((data) => {
                 this.setState({
@@ -50,25 +51,24 @@ class App extends Component {
             score
         } = this.state;
         return (
-            <div>
-                <Switch>
-                    <Route exact path="/" render={props => <Home {...props} onSettings={this.handleSettings} />} />
-                    <Route path="/share/:difficulty/:categoryId" render={props => <Home {...props} onSettings={this.handleSettings} />} />
-                    <Route
-                        path="/questions"
-                        render={props => (
-                            <Questions
-                                {...props}
-                                questions={questions}
-                                onScore={this.handleScore}
-                                settings={settings}
-                                isComplete={questionsAnswered === questions.length}
-                            />
-                        )}
-                    />
-                    <Route path="/scorepage" render={props => <ScorePage {...props} onScore={score} onSettings={this.handleSettings} settings={settings} />} />
-                </Switch>
-            </div>
+            <Switch>
+                <Route exact path="/" render={props => <Home {...props} onSettings={this.handleSettings} />} />
+                <Route path="/share/:difficulty/:categoryId" render={props => <Home {...props} onSettings={this.handleSettings} />} />
+                <Route
+                    path="/questions"
+                    render={props => (
+                        <Questions
+                            {...props}
+                            questions={questions}
+                            onScore={this.handleScore}
+                            settings={settings}
+                            isComplete={questionsAnswered === questions.length}
+                        />
+                    )}
+                />
+                <Route path="/scorepage" render={props => <ScorePage {...props} onScore={score} onSettings={this.handleSettings} settings={settings} />} />
+                <Route path="/aboutus" component={AboutUs} />
+            </Switch>
         );
     }
 }

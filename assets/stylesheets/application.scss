@@ -3,6 +3,10 @@ body {
   padding: 0 5px;
 }
 
+.page-content {
+  width: 900px;
+}
+
 #root {
   display: flex;
   align-items: center;
@@ -11,4 +15,37 @@ body {
 
 .border-1 {
   border-width: 5px !important;
+}
+
+.fa {
+  padding: 5px;
+  font-size: 20px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+}
+
+.fa:hover {
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-github {
+  background: #211f1f;
+  color: white;
+}
+
+img {
+  padding: 5px;
+  font-size: 20px;
+  width: 100px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
 }
