@@ -91,7 +91,8 @@ class Settings extends Component {
                         {
                             availableDifficulties.map(difficultyLevel => (
                                 <Item
-                                    disabled={isSettingsBlocked && difficultyLevel !== selectedDifficulty}
+                                    disabled={isSettingsBlocked
+                                        && difficultyLevel !== selectedDifficulty}
                                     key={difficultyLevel}
                                 >
                                     {difficultyLevel}
