@@ -5,14 +5,17 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from './Button';
 
+const availableDifficulties = ['easy', 'medium', 'hard'];
+
 class Settings extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            difficulty: '',
             selectedCategory: { id: '', name: '' },
+            selectedDifficulty: '',
             categories: [],
             playerName: '',
+            isSettingsBlocked: false,
         };
     }
 
@@ -31,16 +34,18 @@ class Settings extends Component {
             });
     };
 
-        loadPresets = (categories) => {
-            const { match } = this.props;
-            const { params, url } = match;
-            if (url !== "/") {
-                this.setState({
-                    difficulty: params.difficulty,
-                    selectedCategory: categories.find(cat => cat.id === +params.categoryId)
-                });
-            }
+    loadPresets = (categories) => {
+        const { match } = this.props;
+        const { params, url } = match;
+
+        if (url !== "/") {
+            this.setState({
+                selectedDifficulty: params.difficulty,
+                selectedCategory: categories.find(cat => cat.id === +params.categoryId),
+                isSettingsBlocked: true,
+            });
         }
+    }
 
     handleChange = (e) => {
         this.setState({ playerName: e.target.value });
@@ -48,14 +53,14 @@ class Settings extends Component {
 
     handleDifficultySelect = (key, event) => {
         event.preventDefault();
-        this.setState({ difficulty: event.target.id });
+        const selectedDifficulty = availableDifficulties.find(dif => dif === event.target.text);
+        this.setState({ selectedDifficulty });
     }
 
     handleCategorySelect = (key, event) => {
         event.preventDefault();
         const { categories } = this.state;
         const selectedCategory = categories.find(cat => cat.id === +event.target.id);
-
         this.setState({ selectedCategory });
     }
 
@@ -68,9 +73,10 @@ class Settings extends Component {
     render () {
         const {
             playerName,
-            difficulty,
             categories,
-            selectedCategory
+            selectedCategory,
+            selectedDifficulty,
+            isSettingsBlocked
         } = this.state;
         const { Toggle, Menu, Item } = Dropdown;
 
@@ -79,15 +85,18 @@ class Settings extends Component {
 
                 <Dropdown className="mb-3" onSelect={this.handleDifficultySelect}>
                     <Toggle variant="warning" id="dropdown-basic">
-                        {
-                            difficulty.charAt(0).toUpperCase() + difficulty.substr(1).toLowerCase()
-                            || "Difficulty"
-                        }
+                        { selectedDifficulty || "Difficulty" }
                     </Toggle>
                     <Menu>
-                        <Item id="easy">Easy</Item>
-                        <Item id="medium">Medium</Item>
-                        <Item id="hard">Hard</Item>
+                        {
+                            availableDifficulties.map(difficultyLevel => (
+                                <Item
+                                    disabled={isSettingsBlocked && difficultyLevel !== selectedDifficulty}
+                                    key={difficultyLevel}
+                                >
+                                    {difficultyLevel}
+                                </Item>
+                            ))}
                     </Menu>
                 </Dropdown>
 
@@ -101,6 +110,7 @@ class Settings extends Component {
                         {
                             categories.map(category => (
                                 <Item
+                                    disabled={isSettingsBlocked && category !== selectedCategory}
                                     key={category.id}
                                     id={category.id}
                                 >

@@ -4,7 +4,6 @@ import Timer from 'react-compound-timer';
 const TimerPlayerName = ({ settings }) => {
     const handleTimesUp = () => {
     };
-
     return (
         <div>
             <Timer
@@ -19,16 +18,13 @@ const TimerPlayerName = ({ settings }) => {
             </Timer>
             <div>
                 {
-                    settings.difficulty && (
+                    settings.selectedDifficulty && (
                         <p>
                             Difficulty:
-                            {settings.difficulty.charAt(0).toUpperCase()
-                            + settings.difficulty.substr(1).toLowerCase()}
-                            |
-                            Category:
+                            {settings.selectedDifficulty}
+                            | Category:
                             {settings.selectedCategory.name}
-                            |
-                            Player Name:
+                            | Player Name:
                             {settings.playerName}
                         </p>
                     )}
