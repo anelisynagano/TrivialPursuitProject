@@ -29,7 +29,7 @@ class App extends Component {
     handleSettings = (settings) => {
         const { history } = this.props;
         this.setState({ settings }); // submit difficulty,category and player name //
-        this.loadQuestions(settings.difficulty, settings.selectedCategory.id); // loadquestions here
+        this.loadQuestions(settings.selectedDifficulty, settings.selectedCategory.id); // loadquestions here
         history.push('/questions'); // redirect to /questions
     }
 
