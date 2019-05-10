@@ -12,7 +12,7 @@ const Questions = ({
     isComplete
 }) => {
     return (
-        <div>
+        <div className="page-content">
             <Title />
             <TimerPlayerName settings={settings} />
             {questions.map((question) => {

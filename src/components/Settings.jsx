@@ -45,7 +45,6 @@ class Settings extends Component {
                 isSettingsBlocked: true,
             });
         }
-        console.log(params);
     }
 
     handleChange = (e) => {
@@ -82,7 +81,7 @@ class Settings extends Component {
         const { Toggle, Menu, Item } = Dropdown;
 
         return (
-            <div className="border rounded">
+            <div className="mb-3">
 
                 <Dropdown className="mb-3" onSelect={this.handleDifficultySelect}>
                     <Toggle variant="warning" id="dropdown-basic">
