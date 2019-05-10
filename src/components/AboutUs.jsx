@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from './Button';
@@ -21,8 +22,14 @@ const AboutUs = () => {
                 <div className="col">Raquel Moreira</div>
             </div>
             <div className="row mb-3">
-                <div className="col"><a href="https://www.linkedin.com/in/anelisynagano/" className="fa fa-linkedin" target="_blank" rel="noopener noreferrer"/><a href="https://github.com/anelisynagano" className="fa fa-github" target="_blank" rel="noopener noreferrer"/></div>
-                <div className="col"><a href="https://www.linkedin.com/in/moreiraraquel/" className="fa fa-linkedin" target="_blank" rel="noopener noreferrer"/><a href="https://github.com/Raki20" className="fa fa-github" target="_blank" rel="noopener noreferrer"/></div>
+                <div className="col">
+                    <a href="https://www.linkedin.com/in/anelisynagano/" className="fa fa-linkedin" target="_blank" rel="noopener noreferrer" />
+                    <a href="https://github.com/anelisynagano" className="fa fa-github" target="_blank" rel="noopener noreferrer" />
+                </div>
+                <div className="col">
+                    <a href="https://www.linkedin.com/in/moreiraraquel/" className="fa fa-linkedin" target="_blank" rel="noopener noreferrer" />
+                    <a href="https://github.com/Raki20" className="fa fa-github" target="_blank" rel="noopener noreferrer" />
+                </div>
             </div>
 
             <Link to="/"><Button text="Return to game" /></Link>
