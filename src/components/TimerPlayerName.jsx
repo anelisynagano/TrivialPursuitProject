@@ -1,16 +1,16 @@
 import React from 'react';
 import Timer from 'react-compound-timer';
 
-const TimerPlayerName = ({ settings }) => {
-    const handleTimesUp = () => {
-    };
+const TimerPlayerName = ({ settings, onTimesUp }) => {
     return (
         <div>
             <Timer
+                initialTime={10000}
+                direction="backward"
                 checkpoints={[
                     {
-                        time: 3000,
-                        callback: handleTimesUp
+                        time: 0,
+                        callback: () => onTimesUp(),
                     }
                 ]}
             >
