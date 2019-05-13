@@ -9,15 +9,23 @@ const Questions = ({
     questions,
     onScore,
     settings,
-    isComplete
+    isComplete,
+    onNextQuestion,
+    currentStep
 }) => {
     return (
         <div className="page-content">
             <Title />
             <TimerPlayerName settings={settings} />
-            {questions.map((question) => {
+            {questions.map((question, index) => {
                 return (
-                    <QandA onScore={onScore} key={question.question} question={question} />
+                    <QandA
+                        onScore={onScore}
+                        key={question.question}
+                        question={question}
+                        onNextQuestion={onNextQuestion}
+                        isCurrentStep={currentStep === index}
+                    />
                 );
             })}
             {/* show button only if all questions are complete */}
