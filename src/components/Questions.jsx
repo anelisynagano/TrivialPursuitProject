@@ -12,6 +12,7 @@ const Questions = ({
     isComplete,
     onNextQuestion,
     currentStep,
+    onTimesUp
 }) => {
     if (!settings.selectedCategory) {
         return <Redirect to="/" />;
@@ -20,7 +21,7 @@ const Questions = ({
     return (
         <div className="page-content">
             <Title />
-            <TimerPlayerName settings={settings} />
+            <TimerPlayerName settings={settings} onTimesUp={onTimesUp} />
             {questions.map((question, index) => {
                 return (
                     <QandA
