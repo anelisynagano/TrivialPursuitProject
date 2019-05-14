@@ -13,13 +13,13 @@ class ScorePage extends Component {
         };
     }
 
-    render () {  
+    render () {
         const { onScore, settings } = this.props;
         const { selectedCategory, selectedDifficulty } = settings;
         const { copied } = this.state;
 
         const shareLink = () => {
-            if (selectedCategory.id !== '' && selectedDifficulty !== '') {
+            if (selectedCategory.id === '' || selectedDifficulty === '') {
                 return "https://anelisynagano.github.io/TrivialPursuitProject/";
             }
             return `https://anelisynagano.github.io/TrivialPursuitProject/share/${settings.selectedDifficulty}/${settings.selectedCategory.id}`;
@@ -27,7 +27,7 @@ class ScorePage extends Component {
 
         return (
             <div className="page-content">
-                <Score onScore={onScore} />
+                <Score onScore={onScore} settings={settings}/>
                 <p>{shareLink()}</p>
                 <CopyToClipboard
                     text={shareLink()}
