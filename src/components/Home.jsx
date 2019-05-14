@@ -9,7 +9,7 @@ const Home = ({ onSettings }) => {
         <div className="page-content">
             <Title />
             <Settings onSettings={onSettings} />
-            <Link to="/aboutus"><Button text="About Us" className="mb-3" /></Link>
+            <Link to="/aboutus"><Button text="About Us" /></Link>
         </div>
     );
 };
