@@ -1,10 +1,9 @@
 import React from 'react';
 
 const Score = ({ onScore }) => {
-    console.log(onScore);
     return (
 
-        <div className="p-3">
+        <div>
             <h1>Your Score</h1>
             <div className="score">
                 <h2>
