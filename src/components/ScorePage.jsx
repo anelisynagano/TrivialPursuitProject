@@ -13,13 +13,12 @@ class ScorePage extends Component {
         };
     }
 
-    render () {  
+    render () {
         const { onScore, settings } = this.props;
         const { selectedCategory, selectedDifficulty } = settings;
         const { copied } = this.state;
 
         const shareLink = () => {
-            console.log(settings.selectedDifficulty, settings.selectedCategory.id);
             if (selectedCategory.id === '' || selectedDifficulty === '') {
                 return "https://anelisynagano.github.io/TrivialPursuitProject/";
             }
