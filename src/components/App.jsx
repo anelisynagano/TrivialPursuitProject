@@ -53,6 +53,12 @@ class App extends Component {
         });
     }
 
+    handleTimesUp = () => {
+        const { history } = this.props;
+        alert('Sorry, your time is up!');
+        history.push('/scorepage');
+    }
+
     render() {
         const {
             questions,
@@ -76,6 +82,7 @@ class App extends Component {
                             isComplete={questionsAnswered === questions.length}
                             onNextQuestion={this.handleNextQuestion}
                             currentStep={currentStep}
+                            onTimesUp={this.handleTimesUp}
                         />
                     )}
                 />
