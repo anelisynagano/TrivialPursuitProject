@@ -14,6 +14,7 @@ class QandA extends Component {
         };
     }
 
+
     componentDidMount() {
         const { question } = this.props;
         const shuffledAnswers = shuffle([question.correct_answer, ...question.incorrect_answers]);
