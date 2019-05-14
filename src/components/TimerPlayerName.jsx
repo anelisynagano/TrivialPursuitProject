@@ -5,7 +5,7 @@ const TimerPlayerName = ({ settings, onTimesUp }) => {
     return (
         <div>
             <Timer
-                initialTime={10000}
+                initialTime={59000}
                 direction="backward"
                 checkpoints={[
                     {
