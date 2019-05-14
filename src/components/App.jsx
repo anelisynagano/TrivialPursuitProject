@@ -19,7 +19,7 @@ class App extends Component {
     }
 
     loadQuestions = (difficulty, category) => {
-        fetch(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`)
+        fetch(`https://opentdb.com/api.php?amount=3&category=${category}&difficulty=${difficulty}&type=multiple`)
             .then(response => response.json())
             .then((data) => {
                 this.setState({
@@ -47,9 +47,13 @@ class App extends Component {
     }
 
     handleNextQuestion = () => {
-        const { currentStep } = this.state;
+        const { currentStep, questions } = this.state;
+        const { history } = this.props;
+        if (currentStep === questions.length - 1) {
+            history.push('/scorepage');
+        }
         this.setState({
-            currentStep: currentStep + 1
+            currentStep: currentStep + 1,
         });
     }
 

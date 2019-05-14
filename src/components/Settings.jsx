@@ -81,7 +81,7 @@ class Settings extends Component {
         const { Toggle, Menu, Item } = Dropdown;
 
         return (
-            <div className="mb-3">
+            <div>
 
                 <Dropdown className="mb-3" onSelect={this.handleDifficultySelect}>
                     <Toggle variant="warning" id="dropdown-basic">
@@ -121,7 +121,7 @@ class Settings extends Component {
                         }
                     </Menu>
                 </Dropdown>
-                <InputGroup className="mb-3">
+                <InputGroup className="mb-2">
 
                     <FormControl
                         placeholder="Player Name"
