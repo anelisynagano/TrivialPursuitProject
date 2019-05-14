@@ -39,13 +39,16 @@ class QandA extends Component {
     }
 
     render() {
-        const { question } = this.props;
+        const { question, onNextQuestion, isCurrentStep } = this.props;
         const {
             selectedAnswer, shuffledAnswers, isSubmitted, isAnswerSubmitted
         } = this.state;
 
+        const displayQuestion = () => {
+            return (isCurrentStep ? "" : "d-none");
+        };
         return (
-            <div className="py-4">
+            <div className={`py-4 ${displayQuestion()}`}>
                 <div className="bg-warning p-3 mb-3 rounded">{(question.question)}</div>
                 {shuffledAnswers.map((answer) => {
                     return (
@@ -61,10 +64,11 @@ class QandA extends Component {
                     );
                 })}
                 <Button
-                    text="Next"
+                    text="Submit Answer"
                     onClick={this.handleSubmitScore}
                     disabled={isAnswerSubmitted}
                 />
+                <Button text="Next" onClick={onNextQuestion} />
             </div>
         );
     }

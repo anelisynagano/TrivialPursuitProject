@@ -10,19 +10,26 @@ const Questions = ({
     onScore,
     settings,
     isComplete,
-    onTimesUp
+    onNextQuestion,
+    currentStep,
 }) => {
     if (!settings.selectedCategory) {
         return <Redirect to="/" />;
-        //redirect if user refreshes questions page
+        //  redirect if user refreshes questions page
     }
     return (
         <div className="page-content">
             <Title />
-            <TimerPlayerName settings={settings} onTimesUp={onTimesUp} />
-            {questions.map((question) => {
+            <TimerPlayerName settings={settings} />
+            {questions.map((question, index) => {
                 return (
-                    <QandA onScore={onScore} key={question.question} question={question} />
+                    <QandA
+                        onScore={onScore}
+                        key={question.question}
+                        question={question}
+                        onNextQuestion={onNextQuestion}
+                        isCurrentStep={currentStep === index}
+                    />
                 );
             })}
             {/* show button only if all questions are complete */}

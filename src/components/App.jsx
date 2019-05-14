@@ -13,7 +13,8 @@ class App extends Component {
             questions: [],
             settings: {},
             score: 0,
-            questionsAnswered: 0
+            questionsAnswered: 0,
+            currentStep: 0
         };
     }
 
@@ -45,6 +46,13 @@ class App extends Component {
         });
     }
 
+    handleNextQuestion = () => {
+        const { currentStep } = this.state;
+        this.setState({
+            currentStep: currentStep + 1
+        });
+    }
+
     handleTimesUp = () => {
         const { history } = this.props;
         alert('Sorry, your time is up!');
@@ -56,7 +64,8 @@ class App extends Component {
             questions,
             settings,
             questionsAnswered,
-            score
+            score,
+            currentStep
         } = this.state;
         return (
             <Switch>
@@ -71,6 +80,8 @@ class App extends Component {
                             onScore={this.handleScore}
                             settings={settings}
                             isComplete={questionsAnswered === questions.length}
+                            onNextQuestion={this.handleNextQuestion}
+                            currentStep={currentStep}
                             onTimesUp={this.handleTimesUp}
                         />
                     )}
